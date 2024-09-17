@@ -1,9 +1,17 @@
+import { GatewayIntentBits } from 'discord.js'
 import config from './config'
 import Client from './structures/Client'
 
-const client = new Client({ intents: ['Guilds'] })
+const client = new Client({ 
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildEmojisAndStickers,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+	] 
+})
 
-client.login(config.DISCORD_BOT_TOKEN).catch(console.error)
+client.login(config.DISCORD_TOKEN).catch(console.error)
 
 process.on('unhandledRejection', (err) => {
   console.log(client.chalk.red('Unhandled Rejection:'))

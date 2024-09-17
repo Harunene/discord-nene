@@ -1,11 +1,11 @@
-import type { AutocompleteInteraction, StringSelectMenuInteraction, CommandInteraction, Interaction, ButtonInteraction, ModalSubmitInteraction } from 'discord.js'
+import { type AutocompleteInteraction, type StringSelectMenuInteraction, type CommandInteraction, type Interaction, type ButtonInteraction, type ModalSubmitInteraction, Events } from 'discord.js'
 
 import Event from '../../structures/Event'
 import type Bot from '../../structures/Client'
 
 export default class InteractionCreateEvent extends Event {
   constructor (client: Bot) {
-    super(client, 'interactionCreate')
+    super(client, Events.InteractionCreate)
   }
 
   run = async (interaction: Interaction): Promise<void> => {

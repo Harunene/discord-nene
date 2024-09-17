@@ -49,7 +49,7 @@ export default class Bot extends Client {
   private readonly registryEvents = async (dir: string): Promise<void> => {
     await this.readTriggers(dir, (Event) => {
       const event = new Event(this)
-      this.on(event.name, event.run)
+      this.on(event.type, event.run)
     })
   }
 
@@ -80,7 +80,7 @@ export default class Bot extends Client {
         console.log(this.chalk.cyan('Command registered globally!'))
       } else {
         const guild = this.guilds.cache.get(
-          process.env.DISCORD_GUILD_ID as string
+          process.env.DISCORD_TEST_GUILD_ID as string
         )
         if (guild == null) {
           console.log(this.chalk.red('Guild not found to registry commands!'))
