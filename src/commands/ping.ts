@@ -13,20 +13,10 @@ export default class PingCommand extends Command {
   }
 
   run = async (interaction: CommandInteraction): Promise<void> => {
-    const button = new ButtonBuilder({
-      label: 'Click me!',
-      customId: 'ping',
-      style: 1
-    })
+    await interaction.deferReply({ ephemeral: true })
 
-    const row = new ActionRowBuilder<ButtonBuilder>({
-      components: [button]
-    })
-
-    await interaction.reply({
-      content: 'Pong!',
-      ephemeral: true,
-      components: [row]
+    await interaction.editReply({
+      content: 'Pong!'
     })
   }
 
