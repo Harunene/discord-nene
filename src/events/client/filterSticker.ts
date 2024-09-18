@@ -18,18 +18,18 @@ const getRandomRejectMessageContent = (message: Message) => {
   const authorPlaceholder = '%AUTHOR%'
   const rejectCommentList: RejectComment[] = [
     `${authorPlaceholder} 💢`,
-    `<a:ui_no:845321450415980556>`,
-    `<:nacho_ded:1247421429041991750>`,
-    `<:mahjong_kuso_game:617986913110065162>`,
+    `${authorPlaceholder} <a:ui_no:845321450415980556>`,
+    `${authorPlaceholder} <:nacho_ded:1247421429041991750>`,
+    `${authorPlaceholder} <:mahjong_kuso_game:617986913110065162>`,
   ].map(comment => comment.replace(authorPlaceholder, `<@${message.author.id}>`)) 
 
   const rejectStickerList: RejectSticker[] = [
-    "1238848559466680390",
-    "1264805290872672270",
-    "1238849538618429460",
-    "1276514003325292649",
-    "1279379917183913985",
-    "1282974859869290537",
+    // "1238848559466680390",
+    // "1264805290872672270",
+    // "1238849538618429460",
+    // "1276514003325292649",
+    // "1279379917183913985",
+    // "1282974859869290537",
   ].map(stickerId => ({
     stickers: [
       message.guild?.stickers.cache.get(stickerId)
