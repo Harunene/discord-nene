@@ -4,7 +4,8 @@ import Event from '../../structures/Event'
 
 
 const forbiddenStickerIdList = [
-  '1276503786763976724'
+  '1276503786763976724',
+  '1286334639446954018',
 ]
 
 
