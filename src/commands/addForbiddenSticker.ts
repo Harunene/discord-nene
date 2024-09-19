@@ -31,6 +31,13 @@ export default class AddForbiddenStickerCommand extends Command {
   run = async (interaction: CommandInteraction): Promise<void> => {
     await interaction.deferReply({ ephemeral: true })
 
+    if (!this.isOwner(interaction)) {
+      await interaction.editReply({
+        content: '금지야!!!!!!!'
+      })
+      return
+    }
+    
     const stickerId = interaction.options.get('sticker-id')?.value as string
     const stickerName = interaction.options.get('sticker-name')?.value as string
     if (!stickerId || !stickerName) {

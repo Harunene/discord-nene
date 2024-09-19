@@ -11,4 +11,9 @@ export default abstract class Command extends TriggerBase {
     super(client)
     this.data = data
   }
+
+  isOwner = (interaction: CommandInteraction): boolean => {
+    console.log(interaction.user.id, interaction.guild?.ownerId)
+    return interaction.user.id === interaction.guild?.ownerId
+  }
 }
