@@ -2,13 +2,6 @@ import { Emoji, Events, type Message, Sticker, StickerResolvable } from 'discord
 import type Bot from '../../structures/Client'
 import Event from '../../structures/Event'
 
-
-const forbiddenStickerIdList = [
-  '1276503786763976724',
-  '1286334639446954018',
-]
-
-
 type RejectMessageContent = RejectComment | RejectSticker
 type RejectComment = string
 type RejectSticker = {
@@ -59,7 +52,7 @@ export default class FilterStickerEvent extends Event {
   run = async (message: Message): Promise<void> => {
     if (message.stickers.size > 0) {
       for (const [_, sticker] of message.stickers) {
-        if (forbiddenStickerIdList.includes(sticker.id)) {
+        if (this.client.forbiddenStickers.some(forbiddenSticker => forbiddenSticker.id === sticker.id )) {
           await message.delete()
           await this.sendRejectMessage(message)
         }

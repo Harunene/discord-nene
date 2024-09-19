@@ -2,13 +2,14 @@ import { Client, type ClientOptions, type ApplicationCommandData } from 'discord
 import fs from 'node:fs'
 import path from 'node:path'
 import chalk from 'chalk'
-
+import supabase from '../services/supabase'
 import { capitalize } from '../utils/utils'
 import DefaultEmbeds from './DefaultEmbeds'
 import ApiController from './ApiController'
 import type Trigger from './Trigger'
 import type Command from './Command'
 import config from '../config'
+import { StickerItem } from './StickerItem'
 
 export default class Bot extends Client {
   public chalk: typeof chalk
@@ -17,13 +18,18 @@ export default class Bot extends Client {
   public triggers: Record<string, Array<Trigger<any>>> = {}
   public commands: Command[] = []
   public config = config
-
+  public forbiddenStickers: StickerItem[] = []
+  
   constructor (options: ClientOptions) {
     super(options)
 
     this.chalk = chalk
     this.defaultEmbeds = new DefaultEmbeds()
     this.apiController = new ApiController()
+
+    supabase.subscribeForbiddenStickers((stickerItems) => {
+      this.forbiddenStickers = stickerItems
+    })
   }
 
   private readonly readTriggers = async (

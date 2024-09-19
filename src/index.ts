@@ -1,10 +1,10 @@
-import './instrument'
+import './services/instrument'
 import { GatewayIntentBits } from 'discord.js'
 import config from './config'
-import Client from './structures/Client'
+import Bot from './structures/Client'
 import * as Sentry from '@sentry/bun'
 
-const client = new Client({ 
+const client = new Bot({ 
 	intents: [
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildEmojisAndStickers,
